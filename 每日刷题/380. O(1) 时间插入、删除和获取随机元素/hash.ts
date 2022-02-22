@@ -1,3 +1,7 @@
+/**
+ * @leetcode https://leetcode-cn.com/problems/insert-delete-getrandom-o1/
+ */
+
 class RandomizedSet {
 	data: number[] = []
 	hash: Map<any, any>  = new Map()
