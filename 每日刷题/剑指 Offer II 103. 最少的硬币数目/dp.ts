@@ -14,3 +14,32 @@
  * 
  */
 
+
+ function coinChange(coins: number[], amount: number): number {
+  // 开辟长度为 amount + 1 的数组用于存储状态，默认状态为正无穷（之所以是 amount + 1 是因为从 0 - amount）
+  const dp = new Array(amount + 1).fill(Infinity)
+  // 初始化 f[0] = 0
+  dp[0] = 0
+
+  for (let x = 1; x <= amount; x++) { // x 为不同面额，从 f[1] 开始计算到 f[amount]
+    
+    for (let j = 0; j < coins.length; j++) { // 依次从钱包里拿不同面额的硬币出来
+      
+      // 条件一：x 的面额得大于从钱包里拿出来的硬币面额，才能使用从钱包里面里面拿出来的硬币，比如你不能使用 5块 去付 4块
+      // 条件二：f[x - 2] 可以通过钱包内的硬币通过组合的方式付清（这个条件判断能付清，下一个条件判断是否还有更优方式）
+      // 条件三：f[x - 5] 比 f[x] 得到的值更加的小（比如此时的 f[x] 由 f[x - 2] + 1 得到）
+      if (
+        x >= coins[j]
+        && dp[x - coins[j]] !== Infinity 
+        && dp[x - coins[j]] + 1 < dp[x]
+      ) {
+        // 如果能付清，并且当前 f[x - 5] 的方案比 f[x - 2] 的方案更优（使用硬币数更少），则更新 f[x] 的使用最少硬币方案
+         dp[x] = dp[x - coins[j]] + 1 // f[x - 5] 是子方案, + 1 是加上本次使用的硬币
+      }
+      
+    }
+    
+  }
+  // 根据约定 dp[x] 为 ∞ 时返回 -1，否则返回使用硬币数量
+  return dp[amount] === Infinity ? -1 : dp[amount]
+};
