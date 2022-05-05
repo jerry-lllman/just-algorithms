@@ -1,4 +1,8 @@
-class TreeNode {
+/**
+ * @leetcode https://leetcode-cn.com/problems/binary-tree-preorder-traversal/
+ */
+
+ class TreeNode {
 	val: number;
 	left: TreeNode | null
 	right: TreeNode | null
@@ -9,16 +13,15 @@ class TreeNode {
 	}
 }
 
-
-function inorderTraversal(root: TreeNode): number[] {
+function preorderTraversal(root: TreeNode | null): number[] {
 	const ans: number[] = []
-	inorder(root, ans)
+	traversal(root, ans)
 	return ans
 }
 
-function inorder(root: TreeNode | null, ans) {
+function traversal(root: TreeNode | null, ans: number[]) {
 	if (!root) return
-	inorder(root.left, ans)
 	ans.push(root.val)
-	inorder(root.right, ans)
+	traversal(root.left, ans)
+	traversal(root.right, ans)
 }
