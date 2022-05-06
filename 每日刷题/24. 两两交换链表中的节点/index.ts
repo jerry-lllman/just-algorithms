@@ -2,7 +2,7 @@
  * @description https://leetcode-cn.com/problems/swap-nodes-in-pairs/
  */
 
-class ListNode {
+export class ListNode {
 	val: number;
 	next: ListNode | null;
 	constructor(val?: number, next?: ListNode | null) {
