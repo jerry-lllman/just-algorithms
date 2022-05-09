@@ -1,17 +1,14 @@
 function longestConsecutive(nums: number[]): number {
-  if (!nums.length) return 0
+  const hash = new Set(nums)
   let longestLength = 0
-  let hash = new Set(nums) // 去重
-  let temp = 0
+  let currentLength = 0
   for (let n of hash) {
-    if (!hash.has(n - 1)) { // 判断是首位数字时进入判断
-      temp = n
-      let length = 1
-      while(hash.has(temp + 1)) { // 往下一个数字看
-        temp += 1
-        length += 1
-      }
-      longestLength = Math.max(longestLength, length)
+    if (!hash.has(n - 1)) { // 判断是否连续最小位，如果是，则进入来找后面的数值
+      currentLength = 1
+      // 往下一个数字查找
+      while (hash.has(n + 1)) currentLength++, n++;
+      // 最后比较大小
+      longestLength = Math.max(longestLength, currentLength)
     }
   }
   return longestLength
