@@ -1,6 +1,6 @@
 import { ListNode } from "../ListNode.ts"
 
-class ListNodeQueue<T> {
+export class ListNodeQueue<T> {
 	private head: ListNode | null = null // 队列头（链表头）
 	private tail: ListNode | null = null // 队列尾（链表尾）
 	private _size: number = 0 // 队列中元素的个数
