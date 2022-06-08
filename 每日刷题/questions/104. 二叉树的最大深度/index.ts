@@ -15,12 +15,6 @@ class TreeNode {
 }
 
 function maxDepth(root: TreeNode | null): number {
-  return getCount(root, 0)
+	if (!root) return 0
+  return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1
 };
-
-function getCount(root: TreeNode | null, count: number) {
-  if (!root) return 0
-  const leftCount = getCount(root.left, count) + 1
-  const rightCount = getCount(root.right, count) + 1
-  return Math.max(leftCount, rightCount)
-}
