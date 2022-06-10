@@ -13,7 +13,7 @@ class TreeNode {
 }
 
 
-function inorderTraversal(root: TreeNode): number[] {
+function inorderTraversal(root: TreeNode | null): number[] {
 	const ans: number[] = []
 	inorder(root, ans)
 	return ans
