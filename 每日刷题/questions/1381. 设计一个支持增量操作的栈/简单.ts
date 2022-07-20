@@ -1,11 +1,10 @@
-
-
 /**
  * 
  * @leetcode https://leetcode-cn.com/problems/design-a-stack-with-increment-operation/
- * @description 这题用 js 做非常的简单，使用数组处理无解
- * 	使用其他语言也很简单，increment 的时候无非就是先 pop 出来用一个栈（stackTemp）存下来，操作完以后再从stackTemp pop 出来 push 到原栈中即可
  * 
+ * 
+ * 时间复杂度： push,pop O(1), increment O(min(k, ctn)) ctn 为栈中的值
+ * 空间复杂度： O(1)
  */
 
 class CustomStack {
@@ -32,10 +31,3 @@ class CustomStack {
 	}
 }
 
-/**
-* Your CustomStack object will be instantiated and called as such:
-* var obj = new CustomStack(maxSize)
-* obj.push(x)
-* var param_2 = obj.pop()
-* obj.increment(k,val)
-*/
